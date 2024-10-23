@@ -51,7 +51,7 @@ public class HighScoreScreen extends World
         String currentPlayer = players.get(index);
         Integer currentScore = highScores.get(currentPlayer);
         
-        Label scoreLabel = new Label(currentPlayer + ": " + currentScore, 40);
+        Label scoreLabel = new Label(currentPlayer + ": " + currentScore + " WPM", 40);
         addObject(scoreLabel, 300, 200);
     }
 }
