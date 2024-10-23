@@ -3,12 +3,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class InstructionScreen extends World
 {
     private World home;
-    String firstInstruction = "Instruction 1";
-    String secondInstruction = "Instruction 2";
-    String thirdInstruction = "Instruction 3";
+    String firstInstruction = "Test how fast you can type!!";
+    String secondInstruction = "Follow the paragraph given and type your fastest \n without making any mistakes!";
+    String thirdInstruction = "At the end you will see your \n typing speed and your error!";
     private String[] allText = { firstInstruction, secondInstruction, thirdInstruction };
     private int currentIndex = 0;
-    private Label instructionLabel = new Label(allText[currentIndex], 50);
+    private Label instructionLabel = new Label(allText[currentIndex], 40);
+    private Label prev;
+    private Label next;
+    private Label backMenuLabel;
     
     public InstructionScreen(World home)
     {    
@@ -17,15 +20,15 @@ public class InstructionScreen extends World
         this.home = home;
         addObject(instructionLabel, 300, 150);
         
-        //addObject(new Button(this::nextScreen), 500, 300);
-        goNext = new Label("next", 20);
-        addObject(goNext, 500, 265);
+        addObject(new Button(this::nextScreen), 500, 300);
+        next = new Label("next", 20);
+        addObject(next, 500, 265);
         
-        //addObject(new Button(this::prevScreen), 100, 300);
-        goBack = new Label("back", 20);
-        addObject(goBack, 100, 265);
+        addObject(new Button(this::prevScreen), 100, 300);
+        prev = new Label("previous", 20);
+        addObject(prev, 100, 265);
         
-        //addObject(new Button(this::backMenu), 100, 370);
+        addObject(new Button(this::backMenu), 100, 370);
         backMenuLabel = new Label("Back to menu", 20);
         addObject(backMenuLabel, 100, 338);        
     }
@@ -50,5 +53,10 @@ public class InstructionScreen extends World
             currentIndex--;
             instructionLabel.setValue(allText[currentIndex]);
         }
+    }
+    
+    private void backMenu()
+    {
+        Greenfoot.setWorld(home);
     }
 }

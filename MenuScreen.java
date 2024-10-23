@@ -27,9 +27,9 @@ public class MenuScreen extends World
         
         instructionLabel = new Label("View Instructions", 18);
         addObject(instructionLabel, 300, 310);
-        //addObject(new Button(() -> Greenfoot.setWorld(new InstructionScreen(this))), 300, 345);
+        addObject(new Button(() -> Greenfoot.setWorld(new InstructionScreen(this))), 300, 345);
 
-        //addObject(new Button(() -> goHighScores()), 300, 275);
+        //(new Button(() -> goHighScores()), 300, 275);
         highScore = new Label("View your best WPM", 18);
         addObject(highScore, 300, 240);
 
