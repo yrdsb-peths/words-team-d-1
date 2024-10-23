@@ -17,6 +17,38 @@ public class InstructionScreen extends World
         this.home = home;
         addObject(instructionLabel, 300, 150);
         
+        //addObject(new Button(this::nextScreen), 500, 300);
+        goNext = new Label("next", 20);
+        addObject(goNext, 500, 265);
         
+        //addObject(new Button(this::prevScreen), 100, 300);
+        goBack = new Label("back", 20);
+        addObject(goBack, 100, 265);
+        
+        //addObject(new Button(this::backMenu), 100, 370);
+        backMenuLabel = new Label("Back to menu", 20);
+        addObject(backMenuLabel, 100, 338);        
+    }
+    
+    private void nextScreen()
+    {
+        if (currentIndex < allText.length - 1) {
+            currentIndex++;
+            instructionLabel.setValue(allText[currentIndex]);
+        }
+    }
+    
+    private void prevScreen()
+    {
+        if(currentIndex == 0)
+        {
+            Greenfoot.setWorld(home);
+            return;
+        }
+        else
+        {
+            currentIndex--;
+            instructionLabel.setValue(allText[currentIndex]);
+        }
     }
 }
