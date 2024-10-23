@@ -2,7 +2,6 @@ import greenfoot.*;
 import java.util.Map;
 import java.util.Random;
 import java.util.HashMap;
-import java.util.List;
 
 public class Typer extends Actor {
     private static HashMap<Character, Character> keyMap;
