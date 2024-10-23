@@ -1,9 +1,15 @@
 import greenfoot.*;
 import java.util.Map;
+import java.util.Random;
 import java.util.HashMap;
+import java.util.List;
 
 public class Typer extends Actor {
     private static HashMap<Character, Character> keyMap;
+    private static Random random = new Random();
+    private static String[] paragraphs = {
+        "placeholder"
+    };
 
     public Typer() {
         if (keyMap == null) {
@@ -44,5 +50,9 @@ public class Typer extends Actor {
                     System.out.println(e.getKey());
             }
         }
+    }
+
+    public String randomParagraph() {
+        return paragraphs[random.nextInt(paragraphs.length)];
     }
 }
