@@ -32,7 +32,5 @@ public class MenuScreen extends World
         //(new Button(() -> goHighScores()), 300, 275);
         highScore = new Label("View your best WPM", 18);
         addObject(highScore, 300, 240);
-
-
     }
 }
