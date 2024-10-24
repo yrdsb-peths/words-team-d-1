@@ -3,6 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class InstructionScreen extends World
 {
     private World home;
+    private World GameMenu;
     String firstInstruction = "Test how fast you can type!!";
     String secondInstruction = "Follow the paragraph given and type your fastest \n without making any mistakes!";
     String thirdInstruction = "At the end you will see your \n typing speed and your error!";
@@ -30,7 +31,11 @@ public class InstructionScreen extends World
         
         addObject(new Button(this::backMenu), 100, 370);
         backMenuLabel = new Label("Back to menu", 20);
-        addObject(backMenuLabel, 100, 338);        
+        addObject(backMenuLabel, 100, 338);  
+        
+        addObject(new Button(this::goGame), 500, 370);
+        backMenuLabel = new Label("Continue to game", 20);
+        addObject(backMenuLabel, 500, 338);       
     }
     
     private void nextScreen()
@@ -58,5 +63,10 @@ public class InstructionScreen extends World
     private void backMenu()
     {
         Greenfoot.setWorld(home);
+    }
+    
+    private void goGame()
+    {
+        Greenfoot.setWorld(GameMenu);
     }
 }
