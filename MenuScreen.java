@@ -34,6 +34,5 @@ public class MenuScreen extends World
         highScoreLabel = new Label("View your best WPM", 18);
         addObject(highScoreLabel, 300, 240);
         addObject(new Button(() -> Greenfoot.setWorld(new HighScoreScreen(this))), 300, 275);
-
     }
 }
