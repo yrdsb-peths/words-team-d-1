@@ -7,7 +7,7 @@ public class Typer extends Actor {
     private static HashMap<Character, Character> keyMap;
     private static Random random = new Random();
     private static String[] paragraphs = {
-        "placeholder"
+        "The brown fox jumps over the lazy dog."
     };
 
     public Typer() {
