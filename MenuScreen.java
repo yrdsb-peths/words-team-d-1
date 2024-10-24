@@ -21,9 +21,10 @@ public class MenuScreen extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
+        setBackground(new GreenfootImage("monkey.png"));
 
-        welcomeLabel = new Label("Welcome to Monkey Type!", 20);
-        addObject(welcomeLabel, 300, 100);
+        welcomeLabel = new Label("Welcome to Monkey Type!", 35);
+        addObject(welcomeLabel, 300, 160);
         
         instructionLabel = new Label("View Instructions", 18);
         addObject(instructionLabel, 300, 310);
