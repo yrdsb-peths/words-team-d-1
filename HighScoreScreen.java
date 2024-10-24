@@ -3,21 +3,30 @@ import java.util.*;
 
 public class HighScoreScreen extends World
 {
+    private World home;
     private ArrayList<String> players = new ArrayList<String>();
     private Map<String, Integer> highScores = new HashMap<String, Integer>();
     private SimpleTimer timer = new SimpleTimer();
     private int index = 0;
     private int score = 100;
+    private Label backMenuLabel;
+    private Label title;
+    private Label scoreLabel;
 
-    public HighScoreScreen()
+    public HighScoreScreen(World home)
     {    
         super(600, 400, 1);
+        this.home = home;
         prepare();
+
+        addObject(new Button(this::backMenu), 100, 370);
+        backMenuLabel = new Label("Back to menu", 20);
+        addObject(backMenuLabel, 100, 338);    
     }
 
     public void prepare()
     {
-        Label title = new Label("High Scores", 50);
+        title = new Label("High Scores", 50);
         addObject(title, 300, 50);
 
         highScores.put("Player 1", score);
@@ -51,7 +60,12 @@ public class HighScoreScreen extends World
         String currentPlayer = players.get(index);
         Integer currentScore = highScores.get(currentPlayer);
         
-        Label scoreLabel = new Label(currentPlayer + ": " + currentScore + " WPM", 40);
+        scoreLabel = new Label(currentPlayer + ": " + currentScore + " WPM", 40);
         addObject(scoreLabel, 300, 200);
+    }
+    
+    private void backMenu()
+    {
+        Greenfoot.setWorld(home);
     }
 }
