@@ -36,7 +36,7 @@ public class MenuScreen extends World
         addObject(highScoreLabel, 300, 240);
         addObject(new Button(() -> Greenfoot.setWorld(new HighScoreScreen(this))), 300, 275);
         
-        gameLabel = new Label("Click her to begin", 18);
+        gameLabel = new Label("Click here to begin", 18);
         addObject(gameLabel, 300, 170);
         //addObject(new Button(() -> Greenfoot.setWorld(new GameMenu(this))), 300, 200);
         addObject(new Button(() -> Greenfoot.setWorld(new GameMenu(this))), 300, 200);
