@@ -30,7 +30,11 @@ public class InstructionScreen extends World
         
         addObject(new Button(this::backMenu), 100, 370);
         backMenuLabel = new Label("Back to menu", 20);
-        addObject(backMenuLabel, 100, 338);        
+        addObject(backMenuLabel, 100, 338);  
+        
+        addObject(new Button(this::goGame), 500, 370);
+        backMenuLabel = new Label("Continue to game", 20);
+        addObject(backMenuLabel, 500, 338);       
     }
     
     private void nextScreen()
@@ -58,5 +62,10 @@ public class InstructionScreen extends World
     private void backMenu()
     {
         Greenfoot.setWorld(home);
+    }
+    
+    private void goGame()
+    {
+        Greenfoot.setWorld(new GameMenu());
     }
 }
