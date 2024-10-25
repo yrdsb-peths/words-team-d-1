@@ -14,7 +14,7 @@ public class Typer extends Actor {
         "Technology has become an integral part of our daily lives. We rely on it for communication, entertainment, and even work. While it has made many aspects of life easier, it's important to disconnect from time to time and appreciate the simple pleasures that exist without the aid of a screen or device. Taking a break allows us to recharge and reconnect with the world around us, free from constant digital distractions.", 
         "The journey to success is never linear. There are ups and downs, moments of triumph, and periods of doubt. What matters most is persistence. Even when the road seems difficult, those who continue moving forward, learning from failures, and growing through challenges, will eventually reach their goals. Success is not just about talent or luck, but also about resilience and the determination to keep going.", 
         "Learning is a lifelong process, not something that ends after formal education. Every day presents new opportunities to gain knowledge, whether it's through reading, experiencing new things, or interacting with others. Embracing a mindset of curiosity helps foster growth and personal development. The more we engage with the world, the more we expand our understanding of ourselves and the world around us.", 
-        "Nature has a unique way of teaching us balance. The changing seasons, the ebb and flow of tides, the cycle of life and death—all serve as reminders that everything has its time. Just like nature, we too must learn to adapt, let go of what no longer serves us, and embrace new beginnings with grace. Life’s transitions can be challenging, but they also offer opportunities for growth and renewal, if we are open to them.", 
+        "Nature has a unique way of teaching us balance. The changing seasons, the ebb and flow of tides, the cycle of life and death all serve as reminders that everything has its time. Just like nature, we too must learn to adapt, let go of what no longer serves us, and embrace new beginnings with grace. Life's transitions can be challenging, but they also offer opportunities for growth and renewal, if we are open to them.", 
         "Friendship is one of the most valuable gifts in life. True friends stand by you in both good times and bad, offering support, laughter, and comfort. Building and maintaining these relationships requires effort, understanding, and compassion. The reward, however, is a connection that brings meaning and joy to everyday life. Friendship reminds us that we are not alone and that shared experiences enrich our lives.", 
         "Books have the power to transport us to different worlds. Whether it's a fictional universe filled with magic or a historical narrative that brings the past to life, reading opens doors to new perspectives. Through stories, we can explore emotions, ideas, and experiences that shape who we are. Reading allows us to connect with characters and events beyond our reality, enriching our minds and hearts.", 
         "The vastness of the ocean is both awe-inspiring and humbling. Standing on the shore, watching the waves crash against the sand, it's easy to feel small in the grand scheme of things. Yet, there's a sense of peace that comes from knowing we are all part of something larger. The ocean's power and mystery remind us of life's endless possibilities, encouraging us to embrace the unknown with curiosity and courage.", 
@@ -22,6 +22,7 @@ public class Typer extends Actor {
     };
 
     public Typer() {
+        setImage((GreenfootImage) null);
         if (keyMap == null) {
             keyMap = new HashMap<Character, Character>();
             pressedKeys = new HashMap<Character, Boolean>();
@@ -83,7 +84,7 @@ public class Typer extends Actor {
         System.out.println(typed);
     }
 
-    private void randomParagraph() {
+    public void randomParagraph() {
         typed = "";
         currentParagraph = paragraphs[random.nextInt(paragraphs.length)];
     }
