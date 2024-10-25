@@ -24,8 +24,8 @@ public class MenuScreen extends World
         super(600, 400, 1); 
         setBackground(new GreenfootImage("monkey.png"));
 
-        welcomeLabel = new Label("Welcome to Monkey Type!", 35);
-        addObject(welcomeLabel, 300, 160);
+        welcomeLabel = new Label("Welcome to Monkey Type!", 40);
+        addObject(welcomeLabel, 300, 130);
         
         instructionLabel = new Label("View Instructions", 18);
         addObject(instructionLabel, 300, 310);
@@ -37,7 +37,7 @@ public class MenuScreen extends World
         addObject(new Button(() -> Greenfoot.setWorld(new HighScoreScreen(this))), 300, 275);
         
         gameLabel = new Label("Click her to begin", 18);
-        addObject(gameLabel, 300, 150);
+        addObject(gameLabel, 300, 170);
         //addObject(new Button(() -> Greenfoot.setWorld(new GameMenu(this))), 300, 200);
         addObject(new Button(() -> Greenfoot.setWorld(new GameMenu(this))), 300, 200);
     }
