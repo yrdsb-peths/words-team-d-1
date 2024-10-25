@@ -5,7 +5,10 @@ import java.util.HashMap;
 
 public class Typer extends Actor {
     private static HashMap<Character, Character> keyMap;
+    private static HashMap<Character, Boolean> pressedKeys;
     private static Random random = new Random();
+    private static String currentParagraph;
+    private static String typed;
     private static String[] paragraphs = {
         "The stars twinkled overhead as the cool breeze swept across the open field. It was a quiet night, perfect for reflection. The city lights in the distance were a constant reminder of how far the world had come, yet moments like this reminded me of how important it was to slow down and simply breathe. We often get caught up in the rush of daily life, forgetting to pause and appreciate the present moment.",
         "Technology has become an integral part of our daily lives. We rely on it for communication, entertainment, and even work. While it has made many aspects of life easier, it's important to disconnect from time to time and appreciate the simple pleasures that exist without the aid of a screen or device. Taking a break allows us to recharge and reconnect with the world around us, free from constant digital distractions.", 
@@ -21,45 +24,75 @@ public class Typer extends Actor {
     public Typer() {
         if (keyMap == null) {
             keyMap = new HashMap<Character, Character>();
-            for (char c = 'a'; c >= 'a' && c <= 'z'; c++)
-                keyMap.put(c, (char) (c - 32));
-            keyMap.put('`', '~');
-            keyMap.put('1', '!');
-            keyMap.put('2', '@');
-            keyMap.put('3', '#');
-            keyMap.put('4', '$');
-            keyMap.put('5', '%');
-            keyMap.put('6', '^');
-            keyMap.put('7', '&');
-            keyMap.put('8', '*');
-            keyMap.put('9', '(');
-            keyMap.put('0', ')');
-            keyMap.put('-', '_');
-            keyMap.put('=', '+');
-            keyMap.put('[', '{');
-            keyMap.put(']', '}');
-            keyMap.put('\\', '|');
-            keyMap.put(';', ':');
-            keyMap.put('\'', '"');
-            keyMap.put(',', '<');
-            keyMap.put('.', '>');
-            keyMap.put('/', '?');
+            pressedKeys = new HashMap<Character, Boolean>();
+            for (char c = 'a'; c <= 'z'; c++)
+                mapKeys(c, (char) (c - 32));
+            mapKeys('`', '~');
+            mapKeys('1', '!');
+            mapKeys('2', '@');
+            mapKeys('3', '#');
+            mapKeys('4', '$');
+            mapKeys('5', '%');
+            mapKeys('6', '^');
+            mapKeys('7', '&');
+            mapKeys('8', '*');
+            mapKeys('9', '(');
+            mapKeys('0', ')');
+            mapKeys('-', '_');
+            mapKeys('=', '+');
+            mapKeys('[', '{');
+            mapKeys(']', '}');
+            mapKeys('\\', '|');
+            mapKeys(';', ':');
+            mapKeys('\'', '"');
+            mapKeys(',', '<');
+            mapKeys('.', '>');
+            mapKeys('/', '?');
+            mapKeys(' ', ' ');
+            mapKeys('\b', '\b');
         }
+        randomParagraph();
+    }
+
+    private void mapKeys(char lowercase, char uppercase) {
+        keyMap.put(lowercase, uppercase);
+        pressedKeys.put(lowercase, false);
     }
 
     public void act() {
         boolean shift = Greenfoot.isKeyDown("shift");
         for (Map.Entry<Character, Character> e : keyMap.entrySet()) {
-            if (Greenfoot.isKeyDown(String.valueOf(e.getKey()))) {
-                if (shift)
-                    System.out.println(e.getValue());
-                else
-                    System.out.println(e.getKey());
-            }
+            String keyName = String.valueOf(e.getKey());
+            if (keyName.equals(" "))
+                keyName = "space";
+            else if (keyName.equals("\b"))
+                keyName = "backspace";
+
+            if (Greenfoot.isKeyDown(keyName)) {
+                if (!pressedKeys.get(e.getKey())) {
+                    if (keyName == "backspace" && typed.length() > 0)
+                        typed = typed.substring(0, typed.length() - 1);
+                    else
+                        typed += shift ? e.getValue() : e.getKey();
+                    pressedKeys.put(e.getKey(), true);
+                }
+            } else
+                pressedKeys.put(e.getKey(), false);
         }
+
+        System.out.println(typed);
     }
 
-    public String randomParagraph() {
-        return paragraphs[random.nextInt(paragraphs.length)];
+    private void randomParagraph() {
+        typed = "";
+        currentParagraph = paragraphs[random.nextInt(paragraphs.length)];
+    }
+
+    public String getParagraph() {
+        return currentParagraph;
+    }
+
+    public String getTyped() {
+        return typed;
     }
 }
