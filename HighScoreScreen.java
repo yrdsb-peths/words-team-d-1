@@ -54,6 +54,8 @@ public class HighScoreScreen extends World
     public void updateScore()
     {
         if (getObjects(Label.class).size() > 1) {
+            // get 0 returns title label
+            // get 2 returns back to menu label
             removeObject(getObjects(Label.class).get(1));
         }
 
