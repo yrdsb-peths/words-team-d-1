@@ -17,14 +17,15 @@ public class MenuScreen extends World
     Label welcomeLabel;
     Label instructionLabel;
     Label highScoreLabel;
+    Label gameLabel;
     public MenuScreen()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
         setBackground(new GreenfootImage("monkey.png"));
 
-        welcomeLabel = new Label("Welcome to Monkey Type!", 35);
-        addObject(welcomeLabel, 300, 160);
+        welcomeLabel = new Label("Welcome to Monkey Type!", 40);
+        addObject(welcomeLabel, 300, 130);
         
         instructionLabel = new Label("View Instructions", 18);
         addObject(instructionLabel, 300, 310);
@@ -34,5 +35,12 @@ public class MenuScreen extends World
         highScoreLabel = new Label("View your best WPM", 18);
         addObject(highScoreLabel, 300, 240);
         addObject(new Button(() -> Greenfoot.setWorld(new HighScoreScreen(this))), 300, 275);
+        
+        gameLabel = new Label("Click her to begin", 18);
+        addObject(gameLabel, 300, 170);
+        //addObject(new Button(() -> Greenfoot.setWorld(new GameMenu(this))), 300, 200);
+        addObject(new Button(() -> Greenfoot.setWorld(new GameMenu(this))), 300, 200);
     }
+    
+    
 }
