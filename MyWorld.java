@@ -2,6 +2,7 @@ import greenfoot.*;
 
 public class MyWorld extends World {
     public MyWorld() {
-        super(600, 400, 1);
+        WPMCalculation calc = new WPMCalculation();
+        calc.addWPM(300, 200);
     }
 }
