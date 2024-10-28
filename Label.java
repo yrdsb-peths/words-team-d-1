@@ -1,5 +1,7 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.util.GraphicsUtilities;
+import java.awt.Font;
 
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * A Label class that allows you to display a textual value on screen.
@@ -15,6 +17,9 @@ public class Label extends Actor
 {
     private String value;
     private int fontSize;
+    private boolean wrap;
+    private int wrapWidth;
+    private int roomWidth = 600;
     private Color lineColor = Color.BLACK;
     private Color fillColor = Color.WHITE;
     
@@ -26,7 +31,7 @@ public class Label extends Actor
      */
     public Label(int value, int fontSize)
     {
-        this(Integer.toString(value), fontSize);
+        this(Integer.toString(value), fontSize, false);
     }
     
     /**
@@ -34,8 +39,19 @@ public class Label extends Actor
      */
     public Label(String value, int fontSize)
     {
+        this(value, fontSize, false);
+    }
+
+    public Label(int value, int fontSize, boolean wrap)
+    {
+        this(Integer.toString(value), fontSize, wrap);
+    }
+
+    public Label(String value, int fontSize, boolean wrap)
+    {
         this.value = value;
         this.fontSize = fontSize;
+        this.wrap = wrap;
         updateImage();
     }
 
@@ -83,12 +99,22 @@ public class Label extends Actor
         updateImage();
     }
     
-
-    /**
-     * Update the image on screen to show the current value.
-     */
+    
+    // Custom implementation to support wrapping
     private void updateImage()
     {
-        setImage(new GreenfootImage(value, fontSize, fillColor, transparent, lineColor));
+        wrapWidth = (int) Math.round((roomWidth * 2.5) / fontSize);
+        String[] lines = GraphicsUtilities.splitLines(value);
+        String renderedValue = new String(value);
+        if (wrap && lines.length == 1) {
+            for (int i = wrapWidth; i < renderedValue.length(); i += wrapWidth) {
+                i = renderedValue.lastIndexOf(' ', i);
+                if (i == -1)
+                    break;
+                renderedValue = renderedValue.substring(0, i) + "\n" + renderedValue.substring(i);
+                i++;
+            }
+        }
+        setImage(new GreenfootImage(renderedValue, fontSize, fillColor, transparent, lineColor));
     }
 }
