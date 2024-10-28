@@ -1,6 +1,3 @@
-import greenfoot.util.GraphicsUtilities;
-import java.awt.Font;
-
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
@@ -104,9 +101,8 @@ public class Label extends Actor
     private void updateImage()
     {
         wrapWidth = (int) Math.round((roomWidth * 2.5) / fontSize);
-        String[] lines = GraphicsUtilities.splitLines(value);
         String renderedValue = new String(value);
-        if (wrap && lines.length == 1) {
+        if (wrap && value.indexOf('\n') == -1) {
             for (int i = wrapWidth; i < renderedValue.length(); i += wrapWidth) {
                 i = renderedValue.lastIndexOf(' ', i);
                 if (i == -1)
