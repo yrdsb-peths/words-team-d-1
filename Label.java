@@ -129,7 +129,7 @@ public class Label extends Actor
         
         String[] lines = GraphicsUtilities.splitLines(renderedValue);
 
-        MultiLineStringDimensions d = renderLines(lines, Font.BOLD, fontSize);
+        MultiLineStringDimensionsColour d = renderLines(lines, Font.BOLD, fontSize);
         GreenfootImage newImage = new GreenfootImage(d.getWidth(), d.getHeight());
 
         BufferedImage buffer = newImage.getAwtImage();
@@ -154,11 +154,11 @@ public class Label extends Actor
         setImage(newImage);
     }
 
-    public class MultiLineStringDimensions {
+    public class MultiLineStringDimensionsColour {
         private Shape[] lineShapes;
         private Dimension overallBounds;
 
-        public MultiLineStringDimensions(int length) {
+        public MultiLineStringDimensionsColour(int length) {
             this.lineShapes = new Shape[length];
         }
 
@@ -171,10 +171,10 @@ public class Label extends Actor
         }
     }
      
-    private MultiLineStringDimensions renderLines(String[] lines, int style, double size)
-    {
+    private MultiLineStringDimensionsColour renderLines(String[] lines, int style, double size) {
+        // Goal: strip all colour codes, and create shapes for each colour
         BufferedImage image = GraphicsUtilities.createCompatibleTranslucentImage(1, 1);
-        MultiLineStringDimensions r = new MultiLineStringDimensions(lines.length);
+        MultiLineStringDimensionsColour r = new MultiLineStringDimensionsColour(lines.length);
         Graphics2D g = (Graphics2D)image.getGraphics();
         g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         setFontOfPixelHeight(g, style, size);
@@ -193,8 +193,8 @@ public class Label extends Actor
         
         y = 0;
         for (int i = 0; i < lines.length;i++) {
-            AffineTransform translate = AffineTransform.getTranslateInstance((r.overallBounds.getWidth() - lineBounds[i].getWidth()) / 2, y - lineBounds[i].getMinY() /* add on to baseline */);
-            r.lineShapes[i] = new TextLayout(!lines[i].isEmpty()? lines[i] : " ", g.getFont(), frc).getOutline(translate);
+            AffineTransform translate = AffineTransform.getTranslateInstance((r.overallBounds.getWidth() - lineBounds[i].getWidth()) / 2, y - lineBounds[i].getMinY());
+            r.lineShapes[i] = new TextLayout(!lines[i].isEmpty() ? lines[i] : " ", g.getFont(), frc).getOutline(translate);
             y += Math.ceil(lineBounds[i].getHeight());
         }
         
