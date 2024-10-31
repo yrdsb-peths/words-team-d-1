@@ -175,7 +175,7 @@ public class Label extends Actor
         // Goal: strip all colour codes, and create shapes for each colour
         BufferedImage image = GraphicsUtilities.createCompatibleTranslucentImage(1, 1);
         MultiLineStringDimensionsColour r = new MultiLineStringDimensionsColour(lines.length);
-        Graphics2D g = (Graphics2D)image.getGraphics();
+        Graphics2D g = (Graphics2D) image.getGraphics();
         g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         setFontOfPixelHeight(g, style, size);
         
