@@ -71,9 +71,10 @@ public class Typer extends Actor {
 
             if (Greenfoot.isKeyDown(keyName)) {
                 if (!pressedKeys.get(e.getKey())) {
-                    if (keyName == "backspace" && typed.length() > 0)
-                        typed = typed.substring(0, typed.length() - 1);
-                    else
+                    if (keyName.equals("backspace")) {
+                        if (typed.length() > 0)
+                            typed = typed.substring(0, typed.length() - 1);
+                    } else
                         typed += shift ? e.getValue() : e.getKey();
                     pressedKeys.put(e.getKey(), true);
                 }
@@ -95,5 +96,19 @@ public class Typer extends Actor {
 
     public String getTyped() {
         return typed;
+    }
+    
+    public String formatTyped() {
+        String formatted = "";
+        int i = typed.length();
+        int match = currentParagraph.indexOf(typed.substring(0, i));
+        while (match == -1 && i >= 0)
+            match = currentParagraph.indexOf(typed.substring(0, --i));
+        
+        String start = (match == -1) ? "" : "[" + typed.substring(0, i) + "]";
+        String mistakes = (i == typed.length()) ? "" : ("{" + typed.substring(i) + "}");
+        formatted = start + mistakes + currentParagraph.substring(i);
+        
+        return formatted;
     }
 }
