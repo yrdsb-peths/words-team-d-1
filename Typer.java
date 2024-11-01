@@ -71,17 +71,16 @@ public class Typer extends Actor {
 
             if (Greenfoot.isKeyDown(keyName)) {
                 if (!pressedKeys.get(e.getKey())) {
-                    if (keyName == "backspace" && typed.length() > 0)
-                        typed = typed.substring(0, typed.length() - 1);
-                    else
+                    if (keyName.equals("backspace")) {
+                        if (typed.length() > 0)
+                            typed = typed.substring(0, typed.length() - 1);
+                    } else
                         typed += shift ? e.getValue() : e.getKey();
                     pressedKeys.put(e.getKey(), true);
                 }
             } else
                 pressedKeys.put(e.getKey(), false);
         }
-
-        System.out.println(typed);
     }
 
     public void randomParagraph() {
@@ -95,5 +94,24 @@ public class Typer extends Actor {
 
     public String getTyped() {
         return typed;
+    }
+    
+    public String formatTyped() {
+        String formatted = "";
+        String start = "";
+        String mistakes = "";
+        int i = typed.length();
+        boolean match = currentParagraph.startsWith(typed.substring(0, i));
+        while (!match && i >= 0)
+            match = currentParagraph.startsWith(typed.substring(0, --i));
+        
+        if (typed.substring(0, i).length() > 0 && match)
+            start = "[" + typed.substring(0, i) + "]";
+        if (typed.substring(i).length() > 0)
+            mistakes = "{" + typed.substring(i) + "}";
+
+        formatted = start + mistakes + currentParagraph.substring(i);
+        
+        return formatted;
     }
 }
