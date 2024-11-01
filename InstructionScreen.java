@@ -4,8 +4,8 @@ public class InstructionScreen extends World
 {
     private World home;
     String firstInstruction = "Test how fast you can type!!";
-    String secondInstruction = "Follow the paragraph given and type your fastest without making any mistakes!";
-    String thirdInstruction = "At the end you will see your typing speed and your error!";
+    String secondInstruction = "Follow the paragraph given and \n type your fastest without making \n any mistakes!";
+    String thirdInstruction = "At the end you will see your \n typing speed and your error!";
     private String[] allText = { firstInstruction, secondInstruction, thirdInstruction };
     private int currentIndex = 0;
     private Label instructionLabel = new Label(allText[currentIndex], 40, true);
