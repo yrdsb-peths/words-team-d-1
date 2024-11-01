@@ -1,8 +1,8 @@
 import greenfoot.*;
 
 public class MyWorld extends World {
+    WPMCalculation calc;
     public MyWorld() {
-        WPMCalculation calc = new WPMCalculation();
-        calc.addWPM(300, 200);
+        super(600, 400, 1);
     }
 }
