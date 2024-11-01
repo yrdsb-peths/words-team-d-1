@@ -11,10 +11,12 @@ public class GameMenu extends World
     private Label timerLabel; 
     private int timerDuration;  // choose 30 seconds or 60 seconds
 
-    public GameMenu(World home) {    
+    public GameMenu(World home, int timerDuration) {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
         this.home = home;
+        this.timerDuration = timerDuration; 
+        
         gameLabel = new Label("Game", 50);
         addObject(gameLabel, 300, 32);
         
@@ -39,7 +41,7 @@ public class GameMenu extends World
             
         }else 
         {
-            //backMenu();
+            //action for when the timer reaches zero 
         }
         
     }

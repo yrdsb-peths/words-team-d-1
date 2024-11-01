@@ -28,10 +28,10 @@ public class TimerScreen extends World
         
         Label thirtySecondLabel = new Label("30 Seconds", 24);
         addObject(thirtySecondLabel, 200, 200);
-        addObject(new Button(() -> Greenfoot.setWorld(new GameMenu(this))), 200, 250);
+        addObject(new Button(() -> Greenfoot.setWorld(new GameMenu(home, 30))), 200, 250);
         
         Label sixtySecondLabel = new Label("60 Seconds", 24);
         addObject(sixtySecondLabel, 400, 200);
-        addObject(new Button(() -> Greenfoot.setWorld(new GameMenu(this))), 400, 250);
+        addObject(new Button(() -> Greenfoot.setWorld(new GameMenu(home, 60))), 400, 250);
     }
 }

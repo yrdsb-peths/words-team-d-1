@@ -33,7 +33,7 @@ public class InstructionScreen extends World
         addObject(backMenuLabel, 100, 338);  
         
         //addObject(new Button(this::goGame), 500, 370);
-        addObject(new Button(() -> Greenfoot.setWorld(new GameMenu(this))), 500, 370);
+        addObject(new Button(() -> Greenfoot.setWorld(new TimerScreen(this))), 500, 370);
         backMenuLabel = new Label("Continue to game", 20);
         addObject(backMenuLabel, 500, 338);       
     }
