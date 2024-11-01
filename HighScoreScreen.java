@@ -18,6 +18,7 @@ public class HighScoreScreen extends World
         super(600, 400, 1);
         this.home = home;
         prepare();
+        setBackground(new GreenfootImage("background.png"));
 
         addObject(new Button(this::backMenu), 100, 370);
         backMenuLabel = new Label("Back to menu", 20);
