@@ -28,7 +28,7 @@ public class GameMenu extends World
         timer = new SimpleTimer();
         timer.mark(); // start timer 
         timerLabel = new Label("Time: " + timerDuration, 20);
-        addObject(timerLabel, 100, 100);
+        addObject(timerLabel, 50, 50);
     }
     
     public void act (){
@@ -39,7 +39,7 @@ public class GameMenu extends World
             
         }else 
         {
-            backMenu();
+            //backMenu();
         }
         
     }
