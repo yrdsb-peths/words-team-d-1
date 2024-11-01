@@ -81,8 +81,6 @@ public class Typer extends Actor {
             } else
                 pressedKeys.put(e.getKey(), false);
         }
-
-        System.out.println(typed);
     }
 
     public void randomParagraph() {
@@ -100,13 +98,18 @@ public class Typer extends Actor {
     
     public String formatTyped() {
         String formatted = "";
+        String start = "";
+        String mistakes = "";
         int i = typed.length();
-        int match = currentParagraph.indexOf(typed.substring(0, i));
-        while (match == -1 && i >= 0)
-            match = currentParagraph.indexOf(typed.substring(0, --i));
+        boolean match = currentParagraph.startsWith(typed.substring(0, i));
+        while (!match && i >= 0)
+            match = currentParagraph.startsWith(typed.substring(0, --i));
         
-        String start = (match == -1) ? "" : "[" + typed.substring(0, i) + "]";
-        String mistakes = (i == typed.length()) ? "" : ("{" + typed.substring(i) + "}");
+        if (typed.substring(0, i).length() > 0 && match)
+            start = "[" + typed.substring(0, i) + "]";
+        if (typed.substring(i).length() > 0)
+            mistakes = "{" + typed.substring(i) + "}";
+
         formatted = start + mistakes + currentParagraph.substring(i);
         
         return formatted;
