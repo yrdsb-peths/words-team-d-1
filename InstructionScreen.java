@@ -19,6 +19,7 @@ public class InstructionScreen extends World
         super(600, 400, 1);
         this.home = home;
         addObject(instructionLabel, 300, 150);
+        setBackground(new GreenfootImage("background.png"));
         
         addObject(new Button(this::nextScreen), 500, 300);
         next = new Label("next", 20);
