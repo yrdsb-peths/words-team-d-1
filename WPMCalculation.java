@@ -4,6 +4,7 @@ public class WPMCalculation extends Actor
     private Label wpmLabel;
     private Label accLabel;
     private Label rawLabel;
+    private Label timeLabel;
     private int wpm;
     private int rawWpm;
     private double accuracy;
@@ -13,13 +14,15 @@ public class WPMCalculation extends Actor
         setImage((GreenfootImage) null);
         wpmLabel = new Label("WPM: " + wpm, 50);
         rawLabel = new Label("Raw WPM: " + rawWpm, 50);
-        accLabel = new Label("Accuracy: " + accuracy, 50);
+        accLabel = new Label("Accuracy: " + accuracy + "%", 50);
+        timeLabel = new Label("Time: " + "0s", 50);
     }
 
     public void addedToWorld(World world) {
         world.addObject(wpmLabel, 300, 50);
         world.addObject(rawLabel, 300, 150);
         world.addObject(accLabel, 300, 250);
+        world.addObject(timeLabel, 300, 350);
     }
     
     public int getWpm(int timeInSec, int wordsTyped, int wordsWrong)
@@ -43,9 +46,9 @@ public class WPMCalculation extends Actor
         rawWpm = getRaw(timeInSec, wordsTyped);
         accuracy = getAcc(wordsTyped, wordsWrong);
         
-        
         wpmLabel.setValue("WPM: " + wpm);
         rawLabel.setValue("Raw WPM: " + rawWpm);
         accLabel.setValue("Accuracy: " + accuracy + "%");
+        timeLabel.setValue("Time: " + timeInSec + "s");
     }
 }
