@@ -1,4 +1,4 @@
-# Typing Game [PLACEHOLDER NAME]
+# MonkeyType in Greenfoot
 A game that test your typing speed through practice. We provide words, and you type them!
 ## Made By 
 Tiffany, Gloriana, Ethan, Jason C
