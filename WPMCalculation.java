@@ -34,6 +34,6 @@ public class WPMCalculation extends Actor
         accuracy = calculateAccuracy(wordsTyped, wordsWrong);
 
         wpmLabel.setValue("WPM: " + wpm);
-        accuracyLabel.setValue("Accuracy: " + accuracy + "%");
+        accuracyLabel.setValue("Accuracy: " + String.format("%.2f", accuracy) + "%");
     }
 }
