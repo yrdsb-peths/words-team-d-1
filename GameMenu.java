@@ -10,7 +10,8 @@ public class GameMenu extends World
     private SimpleTimer timer;
     private Label timerLabel; 
     private int timerDuration;  // choose 30 seconds or 60 seconds
-
+    
+    
     public GameMenu(World home, int timerDuration) {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
@@ -45,6 +46,13 @@ public class GameMenu extends World
             //action for when the timer reaches zero 
         }
         paragraphLabel.setValue(typer.formatTyped());
+        
+        // check if key is pressed 
+        if(Greenfoot.getKey() != null)
+        {
+            GreenfootSound keyboardSound = new GreenfootSound("keyboardEffect.mp3");
+            keyboardSound.play();
+        }
     }
 
     
