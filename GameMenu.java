@@ -44,10 +44,6 @@ public class GameMenu extends World
         {
             //action for when the timer reaches zero 
         }
-        
-    }
-    
-    public void act() {
         paragraphLabel.setValue(typer.formatTyped());
     }
     
