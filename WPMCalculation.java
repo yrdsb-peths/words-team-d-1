@@ -2,38 +2,53 @@ import greenfoot.*;
 public class WPMCalculation extends Actor
 {
     private Label wpmLabel;
-    private Label accuracyLabel;
+    private Label accLabel;
+    private Label rawLabel;
+    private Label timeLabel;
     private int wpm;
+    private int rawWpm;
     private double accuracy;
 
     public WPMCalculation()
     {
         setImage((GreenfootImage) null);
         wpmLabel = new Label("WPM: " + wpm, 50);
-        accuracyLabel = new Label("Accuracy: " + accuracy, 50);
+        rawLabel = new Label("Raw WPM: " + rawWpm, 50);
+        accLabel = new Label("Accuracy: " + accuracy + "%", 50);
+        timeLabel = new Label("Time: " + "0s", 50);
     }
 
     public void addedToWorld(World world) {
-        world.addObject(wpmLabel, 300, 150);
-        world.addObject(accuracyLabel, 300, 250);
+        world.addObject(wpmLabel, 300, 50);
+        world.addObject(rawLabel, 300, 150);
+        world.addObject(accLabel, 300, 250);
+        world.addObject(timeLabel, 300, 350);
     }
     
-    public int calculateWPM(int wordsTyped, int timeInSec, int wordsWrong)
+    public int getWpm(int timeInSec, int wordsTyped, int wordsWrong)
     {
         return (wordsTyped - wordsWrong) / timeInSec * 60;
     }
+    
+    public int getRaw(int timeInSec, int wordsTyped)
+    {
+        return wordsTyped / timeInSec * 60;
+    }
 
-    public double calculateAccuracy(int wordsTyped, int wordsWrong)
+    public double getAcc(int wordsTyped, int wordsWrong)
     {
         return (double) (wordsTyped - wordsWrong)/ wordsTyped * 100;
     }
 
-    public void updateStats(int wordsTyped, int timeInSec, int wordsWrong)
+    public void updateStats(int timeInSec, int wordsTyped, int wordsWrong)
     {
-        wpm = calculateWPM(wordsTyped, timeInSec, wordsWrong);
-        accuracy = calculateAccuracy(wordsTyped, wordsWrong);
-
+        wpm = getWpm(timeInSec, wordsTyped, wordsWrong);
+        rawWpm = getRaw(timeInSec, wordsTyped);
+        accuracy = getAcc(wordsTyped, wordsWrong);
+        
         wpmLabel.setValue("WPM: " + wpm);
-        accuracyLabel.setValue("Accuracy: " + accuracy + "%");
+        rawLabel.setValue("Raw WPM: " + rawWpm);
+        accLabel.setValue("Accuracy: " + accuracy + "%");
+        timeLabel.setValue("Time: " + timeInSec + "s");
     }
 }
