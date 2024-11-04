@@ -13,15 +13,14 @@ public class ResultScreen extends World
     
     ResultScreen(String typedText, String paragraph, int timeInSec)
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1);
         setBackground(new GreenfootImage("background.png"));
         
-        int wordsTyped = typedText.split(" ").length;     // Count words typed
-        int wordsWrong = calculateWordsWrong(typedText, paragraph); // Calculate wrong words
+        int wordsTyped = typedText.split(" ").length;   
+        int wordsWrong = calculateWordsWrong(typedText, paragraph);
         
         WPMCalculation wpmCalculation = new WPMCalculation();
-        addObject(wpmCalculation, 0, 0); // Add off-screen initially
+        addObject(wpmCalculation, 0, 0);
         wpmCalculation.updateStats(wordsTyped, timeInSec, wordsWrong);
     }
     
