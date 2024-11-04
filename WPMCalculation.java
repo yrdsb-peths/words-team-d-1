@@ -20,7 +20,7 @@ public class WPMCalculation extends Actor
     
     public int calculateWPM(int wordsTyped, int timeInSec, int wordsWrong)
     {
-        return (wordsTyped - wordsWrong) / timeInSec * 60;
+        return (int) (((double) (wordsTyped - wordsWrong) / timeInSec) * 60);
     }
 
     public double calculateAccuracy(int wordsTyped, int wordsWrong)
@@ -30,6 +30,7 @@ public class WPMCalculation extends Actor
 
     public void updateStats(int wordsTyped, int timeInSec, int wordsWrong)
     {
+    
         wpm = calculateWPM(wordsTyped, timeInSec, wordsWrong);
         accuracy = calculateAccuracy(wordsTyped, wordsWrong);
 
