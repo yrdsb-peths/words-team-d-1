@@ -35,6 +35,7 @@ public class GameMenu extends World
     }
     
     public void act (){
+        paragraphLabel.setValue(typer.formatTyped());
         int timeLeft = timerDuration - timer.millisElapsed() / 1000;
         if(timeLeft >= 0)
         {
@@ -44,7 +45,6 @@ public class GameMenu extends World
         {
             //action for when the timer reaches zero 
         }
-        paragraphLabel.setValue(typer.formatTyped());
     }
 
     
