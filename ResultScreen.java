@@ -10,7 +10,7 @@ public class ResultScreen extends World
 {
     private Label backMenuLabel;
     private Label playAgain;
-    
+ 
     ResultScreen(String typedText, String paragraph, int timeInSec)
     {    
         super(600, 400, 1);
@@ -22,6 +22,14 @@ public class ResultScreen extends World
         WPMCalculation wpmCalculation = new WPMCalculation();
         addObject(wpmCalculation, 0, 0);
         wpmCalculation.updateStats(wordsTyped, timeInSec, wordsWrong);
+        
+        addObject(new Button(() -> Greenfoot.setWorld(new TimerScreen(this))), 500, 370);
+        playAgain = new Label("Play again", 20);
+        addObject(playAgain, 500, 338);
+        
+        addObject(new Button(() -> Greenfoot.setWorld(new TimerScreen(this))), 100, 370);
+        backMenuLabel = new Label("Back to menu", 20);
+        addObject(backMenuLabel, 100, 338);
     }
     
     private int calculateWordsWrong(String typedText, String paragraph)
