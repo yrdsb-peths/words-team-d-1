@@ -10,7 +10,7 @@ public class GameMenu extends World
     private SimpleTimer timer;
     private Label timerLabel;
     private int timerDuration;  // choose 30 seconds or 60 seconds
-    private WPMCalculation wpmCalculation;
+    private Stats stats;
     
     public GameMenu(World home, int timerDuration) {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.

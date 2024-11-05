@@ -16,8 +16,8 @@ public class ResultScreen extends World
         super(600, 400, 1);
         setBackground(new GreenfootImage("background.png"));
         
-        WPMCalculation wpmCalculation = new WPMCalculation(timeInSec, totatChars, totalTypos, paragraphLength);
-        addObject(wpmCalculation, 0, 0);
+        Stats stats = new Stats(timeInSec, totatChars, totalTypos, paragraphLength);
+        addObject(stats, 0, 0);
         
         addObject(new Button(() -> Greenfoot.setWorld(new TimerScreen(this))), 500, 370);
         playAgain = new Label("Play again", 20);

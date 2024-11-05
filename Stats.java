@@ -1,5 +1,5 @@
 import greenfoot.*;
-public class WPMCalculation extends Actor
+public class Stats extends Actor
 {
     private Label wpmLabel;
     private Label accLabel;
@@ -7,7 +7,7 @@ public class WPMCalculation extends Actor
     private Label completionLabel;
     private Label timeLabel;
 
-    public WPMCalculation(int timeInSec, int charsTyped, int charsWrong, int paragraphLength)
+    public Stats(int timeInSec, int charsTyped, int charsWrong, int paragraphLength)
     {
         setImage((GreenfootImage) null);
         wpmLabel = new Label("", 50);
