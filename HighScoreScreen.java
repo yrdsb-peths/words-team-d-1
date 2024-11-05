@@ -7,7 +7,7 @@ public class HighScoreScreen extends World
     private List<Label> scoreLabels = new ArrayList<>();
     private SimpleTimer timer = new SimpleTimer();
     private int index = 0;
-    private Label backMenuLabel;
+    private Label backLabel;
     private Label title;
     private Label scoreLabel;
 
@@ -19,8 +19,8 @@ public class HighScoreScreen extends World
         setBackground(new GreenfootImage("background.png"));
 
         addObject(new Button(this::backMenu), 100, 370);
-        backMenuLabel = new Label("Back to menu", 20);
-        addObject(backMenuLabel, 100, 338);  
+        backLabel = new Label("Back", 20);
+        addObject(backLabel, 100, 338);  
         prepare();
     }
 

@@ -29,8 +29,8 @@ public class ResultScreen extends World
         backMenuLabel = new Label("Back to menu", 20);
         addObject(backMenuLabel, 100, 338);
         
-        addObject(new Button(() -> Greenfoot.setWorld(new HighScoreScreen(this))), 500, 70);
+        addObject(new Button(() -> Greenfoot.setWorld(new HighScoreScreen(this))), 510, 70);
         highscores = new Label("Highscores", 20);
-        addObject(highscores, 500, 50);
+        addObject(highscores, 510, 30);
     }
 }
