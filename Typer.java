@@ -5,7 +5,6 @@ import java.util.HashMap;
 
 public class Typer extends Actor {
     private static HashMap<Character, Character> keyMap;
-    private static HashMap<Character, Boolean> pressedKeys;
     private static Random random = new Random();
     private static String[] paragraphs = {
         "The stars twinkled overhead as the cool breeze swept across the open field. It was a quiet night, perfect for reflection. The city lights in the distance were a constant reminder of how far the world had come, yet moments like this reminded me of how important it was to slow down and simply breathe. We often get caught up in the rush of daily life, forgetting to pause and appreciate the present moment.",
@@ -18,14 +17,18 @@ public class Typer extends Actor {
         "The vastness of the ocean is both awe-inspiring and humbling. Standing on the shore, watching the waves crash against the sand, it's easy to feel small in the grand scheme of things. Yet, there's a sense of peace that comes from knowing we are all part of something larger. The ocean's power and mystery remind us of life's endless possibilities, encouraging us to embrace the unknown with curiosity and courage.", 
         "In a world that moves so quickly, it's important to take moments for self-care. Whether it's a quiet cup of tea in the morning, a walk in nature, or time spent with loved ones, these moments of stillness allow us to recharge and find balance amidst the chaos of everyday life. Self-care is not selfish, but a necessary practice to maintain mental, emotional, and physical well-being, allowing us to be our best selves."
     };
+    
+    private HashMap<Character, Boolean> pressedKeys;
     private String currentParagraph;
     private String typed;
+    private String mistakes;
+    private int totalTypos;
 
     public Typer() {
         setImage((GreenfootImage) null);
+        pressedKeys = new HashMap<Character, Boolean>();
         if (keyMap == null) {
             keyMap = new HashMap<Character, Character>();
-            pressedKeys = new HashMap<Character, Boolean>();
             for (char c = 'a'; c <= 'z'; c++)
                 mapKeys(c, (char) (c - 32));
             mapKeys('`', '~');
@@ -72,19 +75,31 @@ public class Typer extends Actor {
             if (Greenfoot.isKeyDown(keyName)) {
                 if (!pressedKeys.get(e.getKey())) {
                     if (keyName.equals("backspace")) {
-                        if (typed.length() > 0)
+                        if (mistakes.length() > 0)
+                            mistakes = mistakes.substring(0, mistakes.length() - 1);
+                        else if (typed.length() > 0) 
                             typed = typed.substring(0, typed.length() - 1);
-                    } else
-                        typed += shift ? e.getValue() : e.getKey();
+                    } else {
+                        char newKey = shift ? e.getValue() : e.getKey();
+                        int len = typed.length();
+                        if (mistakes.length() == 0 && currentParagraph.length() > len && currentParagraph.charAt(len) == newKey)
+                            typed += newKey;
+                        else {
+                            mistakes += newKey;
+                            totalTypos++;
+                        }
+                    }
                     pressedKeys.put(e.getKey(), true);
                 }
             } else
                 pressedKeys.put(e.getKey(), false);
         }
     }
-
+    
     public void randomParagraph() {
         typed = "";
+        mistakes = "";
+        totalTypos = 0;
         currentParagraph = paragraphs[random.nextInt(paragraphs.length)];
     }
 
@@ -95,23 +110,18 @@ public class Typer extends Actor {
     public String getTyped() {
         return typed;
     }
+
+    public int getTypedLength() {
+        return typed.length();
+    }
+
+    public int getTotalTypos() {
+        return totalTypos;
+    }
     
     public String formatTyped() {
-        String formatted = "";
-        String start = "";
-        String mistakes = "";
-        int i = typed.length();
-        boolean match = currentParagraph.startsWith(typed.substring(0, i));
-        while (!match && i >= 0)
-            match = currentParagraph.startsWith(typed.substring(0, --i));
-        
-        if (typed.substring(0, i).length() > 0 && match)
-            start = "[" + typed.substring(0, i) + "]";
-        if (typed.substring(i).length() > 0)
-            mistakes = "{" + typed.substring(i) + "}";
-
-        formatted = start + mistakes + currentParagraph.substring(i);
-        
-        return formatted;
+        String start = (typed.length() > 0) ? "[" + typed + "]" : "";
+        String typos = (mistakes.length() > 0) ? "{" + mistakes + "}" : "";
+        return start + typos + currentParagraph.substring(typed.length());
     }
 }

@@ -8,7 +8,7 @@ public class GameMenu extends World
     private World home;
     
     private SimpleTimer timer;
-    private Label timerLabel; 
+    private Label timerLabel;
     private int timerDuration;  // choose 30 seconds or 60 seconds
     private WPMCalculation wpmCalculation;
     
@@ -35,7 +35,8 @@ public class GameMenu extends World
         addObject(timerLabel, 50, 50);
     }
     
-    public void act (){
+    public void act(){
+        paragraphLabel.setValue(typer.formatTyped());
         int timeLeft = timerDuration - timer.millisElapsed() / 1000;
         if(timeLeft >= 0)
         {
@@ -45,7 +46,7 @@ public class GameMenu extends World
         else 
         {
             //action for when the timer reaches zero 
-            Greenfoot.setWorld(new ResultScreen(typer.getTyped(), typer.getParagraph(), timerDuration));
+            Greenfoot.setWorld(new ResultScreen(timerDuration, typer.getTypedLength(), typer.getTotalTypos(), typer.getParagraph().length()));
         }
         paragraphLabel.setValue(typer.formatTyped());
         
