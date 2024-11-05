@@ -23,7 +23,8 @@ public class ResultScreen extends World
         playAgain = new Label("Play again", 20);
         addObject(playAgain, 500, 338);
         
-        addObject(new Button(() -> Greenfoot.setWorld(new TimerScreen(this))), 100, 370);
+        addObject(new Button(() -> Greenfoot.setWorld(new MenuScreen())), 100, 370);
+
         backMenuLabel = new Label("Back to menu", 20);
         addObject(backMenuLabel, 100, 338);
     }
