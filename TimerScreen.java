@@ -22,6 +22,7 @@ public class TimerScreen extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1);
         this.home = home;
+        setBackground(new GreenfootImage("background.png"));
         
         timerLabel = new Label("Choose your time duration!", 30);
         addObject(timerLabel, 300, 100);

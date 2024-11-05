@@ -10,7 +10,7 @@ public class GameMenu extends World
     private SimpleTimer timer;
     private Label timerLabel; 
     private int timerDuration;  // choose 30 seconds or 60 seconds
-    
+    private WPMCalculation wpmCalculation;
     
     public GameMenu(World home, int timerDuration) {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -41,9 +41,11 @@ public class GameMenu extends World
         {
             timerLabel.setValue("Time: " + timeLeft);
             
-        }else 
+        }
+        else 
         {
             //action for when the timer reaches zero 
+            Greenfoot.setWorld(new ResultScreen(typer.getTyped(), typer.getParagraph(), timerDuration));
         }
         paragraphLabel.setValue(typer.formatTyped());
         
@@ -54,7 +56,6 @@ public class GameMenu extends World
             keyboardSound.play();
         }
     }
-
     
     private void backMenu()
     {

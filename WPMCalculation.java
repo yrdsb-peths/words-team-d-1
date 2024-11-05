@@ -27,7 +27,7 @@ public class WPMCalculation extends Actor
     
     public int getWpm(int timeInSec, int wordsTyped, int wordsWrong)
     {
-        return (wordsTyped - wordsWrong) / timeInSec * 60;
+        return (int) (((double) (wordsTyped - wordsWrong) / timeInSec) * 60);
     }
     
     public int getRaw(int timeInSec, int wordsTyped)
@@ -42,13 +42,10 @@ public class WPMCalculation extends Actor
 
     public void updateStats(int timeInSec, int wordsTyped, int wordsWrong)
     {
-        wpm = getWpm(timeInSec, wordsTyped, wordsWrong);
-        rawWpm = getRaw(timeInSec, wordsTyped);
-        accuracy = getAcc(wordsTyped, wordsWrong);
-        
+        wpm = calculateWPM(wordsTyped, timeInSec, wordsWrong);
+        accuracy = calculateAccuracy(wordsTyped, wordsWrong);
+
         wpmLabel.setValue("WPM: " + wpm);
-        rawLabel.setValue("Raw WPM: " + rawWpm);
-        accLabel.setValue("Accuracy: " + accuracy + "%");
-        timeLabel.setValue("Time: " + timeInSec + "s");
+        accuracyLabel.setValue("Accuracy: " + String.format("%.2f", accuracy) + "%");
     }
 }
