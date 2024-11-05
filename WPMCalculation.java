@@ -5,16 +5,15 @@ public class WPMCalculation extends Actor
     private Label accLabel;
     private Label rawLabel;
     private Label timeLabel;
-    private double accuracy;
 
-    public WPMCalculation(int timeInSec, int wordsTyped, int wordsWrong)
+    public WPMCalculation(int timeInSec, int charsTyped, int charsWrong)
     {
         setImage((GreenfootImage) null);
         wpmLabel = new Label("", 50);
         rawLabel = new Label("", 50);
         accLabel = new Label("", 50);
         timeLabel = new Label("Time: " + timeInSec + "s", 50);
-        updateStats(timeInSec, wordsTyped, wordsWrong);
+        updateStats(timeInSec, charsTyped, charsWrong);
     }
 
     public void addedToWorld(World world) {
@@ -24,28 +23,26 @@ public class WPMCalculation extends Actor
         world.addObject(timeLabel, 300, 350);
     }
     
-    public int getWpm(int timeInSec, int wordsTyped, int wordsWrong)
+    public int getWpm(int timeInSec, int charsTyped, int charsWrong)
     {
-        return Math.max((int) (((double) (wordsTyped - wordsWrong) / timeInSec) * 60), 0);
+        return Math.max((int) (((double) (charsTyped - charsWrong) / timeInSec) * 60), 0);
     }
     
-    public int getRaw(int timeInSec, int wordsTyped)
+    public int getRaw(int timeInSec, int totalChars)
     {
-        return wordsTyped / timeInSec * 60;
+        return totalChars / timeInSec * 60;
     }
 
-    public double getAcc(int wordsTyped, int wordsWrong)
+    public double getAcc(int charsTyped, int charsWrong)
     {
-        if (wordsTyped == 0)
-            return 0;
-        return (double) (wordsTyped - wordsWrong) / wordsTyped * 100;
+        return (double) charsTyped / (charsTyped + charsWrong) * 100;
     }
 
-    public void updateStats(int timeInSec, int wordsTyped, int wordsWrong)
+    public void updateStats(int timeInSec, int charsTyped, int charsWrong)
     {
-        int wpm = getWpm(timeInSec, wordsTyped, wordsWrong);
-        int raw = getRaw(timeInSec, wordsTyped);
-        double accuracy = getAcc(wordsTyped, wordsWrong);
+        int wpm = getWpm(timeInSec, charsTyped, charsWrong);
+        int raw = getRaw(timeInSec, charsTyped + charsWrong);
+        double accuracy = getAcc(charsTyped, charsWrong);
 
         wpmLabel.setValue("WPM: " + wpm);
         rawLabel.setValue("Raw WPM: " + raw);

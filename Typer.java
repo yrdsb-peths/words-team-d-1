@@ -17,6 +17,7 @@ public class Typer extends Actor {
         "The vastness of the ocean is both awe-inspiring and humbling. Standing on the shore, watching the waves crash against the sand, it's easy to feel small in the grand scheme of things. Yet, there's a sense of peace that comes from knowing we are all part of something larger. The ocean's power and mystery remind us of life's endless possibilities, encouraging us to embrace the unknown with curiosity and courage.", 
         "In a world that moves so quickly, it's important to take moments for self-care. Whether it's a quiet cup of tea in the morning, a walk in nature, or time spent with loved ones, these moments of stillness allow us to recharge and find balance amidst the chaos of everyday life. Self-care is not selfish, but a necessary practice to maintain mental, emotional, and physical well-being, allowing us to be our best selves."
     };
+    
     private HashMap<Character, Boolean> pressedKeys;
     private String currentParagraph;
     private String typed;
@@ -25,9 +26,9 @@ public class Typer extends Actor {
 
     public Typer() {
         setImage((GreenfootImage) null);
+        pressedKeys = new HashMap<Character, Boolean>();
         if (keyMap == null) {
             keyMap = new HashMap<Character, Character>();
-            pressedKeys = new HashMap<Character, Boolean>();
             for (char c = 'a'; c <= 'z'; c++)
                 mapKeys(c, (char) (c - 32));
             mapKeys('`', '~');
@@ -108,6 +109,14 @@ public class Typer extends Actor {
 
     public String getTyped() {
         return typed;
+    }
+
+    public int getTypedLength() {
+        return typed.length();
+    }
+
+    public int getTotalTypos() {
+        return totalTypos;
     }
     
     public String formatTyped() {

@@ -46,7 +46,7 @@ public class GameMenu extends World
         else 
         {
             //action for when the timer reaches zero 
-            Greenfoot.setWorld(new ResultScreen(typer.getTyped(), typer.getParagraph(), timerDuration));
+            Greenfoot.setWorld(new ResultScreen(timerDuration, typer.getTypedLength(), typer.getTotalTypos()));
         }
         paragraphLabel.setValue(typer.formatTyped());
         
