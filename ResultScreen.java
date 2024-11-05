@@ -11,12 +11,12 @@ public class ResultScreen extends World
     private Label backMenuLabel;
     private Label playAgain;
  
-    public ResultScreen(int timeInSec, int totatChars, int totalTypos)
+    public ResultScreen(int timeInSec, int totatChars, int totalTypos, int paragraphLength)
     {    
         super(600, 400, 1);
         setBackground(new GreenfootImage("background.png"));
         
-        WPMCalculation wpmCalculation = new WPMCalculation(timeInSec, totatChars, totalTypos);
+        WPMCalculation wpmCalculation = new WPMCalculation(timeInSec, totatChars, totalTypos, paragraphLength);
         addObject(wpmCalculation, 0, 0);
         
         addObject(new Button(() -> Greenfoot.setWorld(new TimerScreen(this))), 500, 370);
