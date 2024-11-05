@@ -8,7 +8,7 @@ public class GameMenu extends World
     private World home;
     
     private SimpleTimer timer;
-    private Label timerLabel; 
+    private Label timerLabel;
     private int timerDuration;  // choose 30 seconds or 60 seconds
 
     public GameMenu(World home, int timerDuration) {    
@@ -34,7 +34,7 @@ public class GameMenu extends World
         addObject(timerLabel, 50, 50);
     }
     
-    public void act (){
+    public void act(){
         paragraphLabel.setValue(typer.formatTyped());
         int timeLeft = timerDuration - timer.millisElapsed() / 1000;
         if(timeLeft >= 0)
