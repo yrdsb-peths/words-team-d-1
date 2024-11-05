@@ -6,7 +6,9 @@ public class WPMCalculation extends Actor
     private Label rawLabel;
     private Label completionLabel;
     private Label timeLabel;
-
+    private Label highestWPMLabel; 
+    private int highestWPM = 0;
+    
     public WPMCalculation(int timeInSec, int charsTyped, int charsWrong, int paragraphLength)
     {
         setImage((GreenfootImage) null);
@@ -56,5 +58,6 @@ public class WPMCalculation extends Actor
         rawLabel.setValue("Raw WPM: " + raw);
         accLabel.setValue("Accuracy: " + String.format("%.2f", accuracy) + "%");
         completionLabel.setValue("Completion: " + String.format("%.2f", completion) + "%");
+        HighScoreManager.updateHighScores(wpm, raw, accuracy);
     }
 }
