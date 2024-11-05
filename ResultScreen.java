@@ -10,7 +10,8 @@ public class ResultScreen extends World
 {
     private Label backMenuLabel;
     private Label playAgain;
- 
+    private Label highscores;
+    
     public ResultScreen(int timeInSec, int totatChars, int totalTypos, int paragraphLength)
     {    
         super(600, 400, 1);
@@ -18,13 +19,18 @@ public class ResultScreen extends World
         
         WPMCalculation wpmCalculation = new WPMCalculation(timeInSec, totatChars, totalTypos, paragraphLength);
         addObject(wpmCalculation, 0, 0);
+        HighScoreManager.updateHighScores(wpm, totalChars, totalTypos);
         
         addObject(new Button(() -> Greenfoot.setWorld(new TimerScreen(this))), 500, 370);
         playAgain = new Label("Play again", 20);
         addObject(playAgain, 500, 338);
         
-        addObject(new Button(() -> Greenfoot.setWorld(new TimerScreen(this))), 100, 370);
+        addObject(new Button(() -> Greenfoot.setWorld(new MenuScreen())), 100, 370);
         backMenuLabel = new Label("Back to menu", 20);
         addObject(backMenuLabel, 100, 338);
+        
+        addObject(new Button(() -> Greenfoot.setWorld(new HighScoreScreen(this))), 500, 300);
+        highscores = new Label("Highscores", 20);
+        addObject(highscores, 500, 265);
     }
 }
