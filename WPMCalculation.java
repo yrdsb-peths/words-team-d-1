@@ -5,17 +5,16 @@ public class WPMCalculation extends Actor
     private Label accLabel;
     private Label rawLabel;
     private Label timeLabel;
-    private int wpm;
-    private int rawWpm;
     private double accuracy;
 
-    public WPMCalculation()
+    public WPMCalculation(int timeInSec, int wordsTyped, int wordsWrong)
     {
         setImage((GreenfootImage) null);
-        wpmLabel = new Label("WPM: " + wpm, 50);
-        rawLabel = new Label("Raw WPM: " + rawWpm, 50);
-        accLabel = new Label("Accuracy: " + accuracy + "%", 50);
-        timeLabel = new Label("Time: " + "0s", 50);
+        wpmLabel = new Label("", 50);
+        rawLabel = new Label("", 50);
+        accLabel = new Label("", 50);
+        timeLabel = new Label("Time: " + timeInSec + "s", 50);
+        updateStats(timeInSec, wordsTyped, wordsWrong);
     }
 
     public void addedToWorld(World world) {
@@ -27,7 +26,7 @@ public class WPMCalculation extends Actor
     
     public int getWpm(int timeInSec, int wordsTyped, int wordsWrong)
     {
-        return (int) (((double) (wordsTyped - wordsWrong) / timeInSec) * 60);
+        return Math.max((int) (((double) (wordsTyped - wordsWrong) / timeInSec) * 60), 0);
     }
     
     public int getRaw(int timeInSec, int wordsTyped)
@@ -37,15 +36,19 @@ public class WPMCalculation extends Actor
 
     public double getAcc(int wordsTyped, int wordsWrong)
     {
-        return (double) (wordsTyped - wordsWrong)/ wordsTyped * 100;
+        if (wordsTyped == 0)
+            return 0;
+        return (double) (wordsTyped - wordsWrong) / wordsTyped * 100;
     }
 
     public void updateStats(int timeInSec, int wordsTyped, int wordsWrong)
     {
-        wpm = calculateWPM(wordsTyped, timeInSec, wordsWrong);
-        accuracy = calculateAccuracy(wordsTyped, wordsWrong);
+        int wpm = getWpm(timeInSec, wordsTyped, wordsWrong);
+        int raw = getRaw(timeInSec, wordsTyped);
+        double accuracy = getAcc(wordsTyped, wordsWrong);
 
         wpmLabel.setValue("WPM: " + wpm);
-        accuracyLabel.setValue("Accuracy: " + String.format("%.2f", accuracy) + "%");
+        rawLabel.setValue("Raw WPM: " + raw);
+        accLabel.setValue("Accuracy: " + String.format("%.2f", accuracy) + "%");
     }
 }
