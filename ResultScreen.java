@@ -12,17 +12,21 @@ public class ResultScreen extends World
     private Label playAgain;
     private Label highScoreLabel;
     
-    ResultScreen(String typedText, String paragraph, int timeInSec)
+    ResultScreen(String typedText, String paragraph, int timeInSec, HighScoreManager highScoreManager)
     {    
         super(600, 400, 1);
         setBackground(new GreenfootImage("background.png"));
+        this.highScoreManager = highScoreManager;
         
         int wordsTyped = typedText.split(" ").length;   
         int wordsWrong = calculateWordsWrong(typedText, paragraph);
         
         WPMCalculation wpmCalculation = new WPMCalculation();
         addObject(wpmCalculation, 0, 0);
+        
+        int wpm = wpmCalculation.calculateWPM(wordsTyped, timeInSec, wordsWrong);
         wpmCalculation.updateStats(wordsTyped, timeInSec, wordsWrong);
+        highScoreManager.addScore(wpm);
         
         addObject(new Button(() -> Greenfoot.setWorld(new TimerScreen(this))), 500, 370);
         playAgain = new Label("Play again", 20);

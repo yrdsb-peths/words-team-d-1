@@ -13,7 +13,7 @@ public class HighScoreScreen extends World
     private Label title;
     private Label scoreLabel;
 
-    public HighScoreScreen(World home)
+    public HighScoreScreen(HighScoreManager highScoreManager)
     {    
         super(600, 400, 1);
         this.home = home;
