@@ -34,7 +34,7 @@
 public class SimpleTimer
 {
     private long lastMark = System.currentTimeMillis();
-    
+    private boolean on = false;
     /**
      * Marks the current time.  You can then in future call
      * millisElapsed() to find out the elapsed milliseconds
@@ -45,7 +45,11 @@ public class SimpleTimer
      */
     public void mark()
     {
-        lastMark = System.currentTimeMillis();
+        if(!on)
+        {
+            lastMark = System.currentTimeMillis();
+            on = true;
+        }
     }
     
     /**

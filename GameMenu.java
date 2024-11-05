@@ -28,9 +28,7 @@ public class GameMenu extends World
         paragraphLabel = new Label(typer.getParagraph(), 32, true);
         addObject(paragraphLabel, 300, 232);  
         
-        // intialize the timer and timer label 
         timer = new SimpleTimer();
-        timer.mark(); // start timer 
         timerLabel = new Label("Time: " + timerDuration, 20);
         addObject(timerLabel, 50, 50);
     }
@@ -52,6 +50,9 @@ public class GameMenu extends World
         // check if key is pressed 
         if(Greenfoot.getKey() != null)
         {
+            
+            // intialize the timer and timer label 
+            timer.mark(); // start timer 
             GreenfootSound keyboardSound = new GreenfootSound("keyboardEffect.mp3");
             keyboardSound.play();
         }
