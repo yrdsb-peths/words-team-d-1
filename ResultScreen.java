@@ -10,7 +10,8 @@ public class ResultScreen extends World
 {
     private Label backMenuLabel;
     private Label playAgain;
- 
+    private Label highScoreLabel;
+    
     ResultScreen(String typedText, String paragraph, int timeInSec)
     {    
         super(600, 400, 1);
@@ -30,7 +31,12 @@ public class ResultScreen extends World
         addObject(new Button(() -> Greenfoot.setWorld(new TimerScreen(this))), 100, 370);
         backMenuLabel = new Label("Back to menu", 20);
         addObject(backMenuLabel, 100, 338);
+        
+        addObject(new Button(() -> Greenfoot.setWorld(new HighScoreScreen(this))), 200, 370);
+        highScoreLabel = new Label("Highscores", 20);
+        addObject(highScoreLabel, 100, 338);
     }
+
     
     private int calculateWordsWrong(String typedText, String paragraph)
     {
