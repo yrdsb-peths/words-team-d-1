@@ -38,20 +38,20 @@ public class HighScoreScreen extends World
         }
         scoreLabels.clear();
 
-        int bestWPM = HighScoreManager.getBestWPM();
-        int bestRawWPM = HighScoreManager.getBestRawWPM();
+        int bestCPM = HighScoreManager.getBestCPM();
+        int bestRawCPM = HighScoreManager.getBestRawCPM();
         double bestAccuracy = HighScoreManager.getBestAccuracy();
         
-        Label wpmLabel = new Label("Best WPM: " + bestWPM, 30);
-        Label rawWpmLabel = new Label("Best Raw WPM: " + bestRawWPM, 30);
+        Label cpmLabel = new Label("Best CPM: " + bestCPM, 30);
+        Label rawCpmLabel = new Label("Best Raw CPM: " + bestRawCPM, 30);
         Label accuracyLabel = new Label("Best Accuracy: " + String.format("%.2f", bestAccuracy) + "%", 30);
         
-        addObject(wpmLabel, getWidth() / 2, 100);
-        addObject(rawWpmLabel, getWidth() / 2, 150);
+        addObject(cpmLabel, getWidth() / 2, 100);
+        addObject(rawCpmLabel, getWidth() / 2, 150);
         addObject(accuracyLabel, getWidth() / 2, 200);
         
-        scoreLabels.add(wpmLabel);
-        scoreLabels.add(rawWpmLabel);
+        scoreLabels.add(cpmLabel);
+        scoreLabels.add(rawCpmLabel);
         scoreLabels.add(accuracyLabel);
     }
     

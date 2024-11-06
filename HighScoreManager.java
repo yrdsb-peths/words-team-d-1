@@ -1,17 +1,17 @@
 public class HighScoreManager {
-    private static int bestWPM = 0;
-    private static int bestRawWPM = 0; 
+    private static int bestCPM = 0;
+    private static int bestRawCPM = 0; 
     private static double bestAccuracy = 0.0;
 
-    public static void updateHighScores(int wpm, int rawWpm, double accuracy) 
+    public static void updateHighScores(int cpm, int rawCpm, double accuracy) 
     {
-        if (wpm > bestWPM) 
+        if (cpm > bestCPM) 
         {
-            bestWPM = wpm;
+            bestCPM = cpm;
         }
-        if (rawWpm > bestRawWPM) 
+        if (rawCpm > bestRawCPM) 
         {
-            bestRawWPM = rawWpm;
+            bestRawCPM = rawCpm;
         }
         if (accuracy > bestAccuracy) 
         {
@@ -19,14 +19,14 @@ public class HighScoreManager {
         }
     }
 
-    public static int getBestWPM() 
+    public static int getBestCPM() 
     {
-        return bestWPM;
+        return bestCPM;
     }
 
-    public static int getBestRawWPM() 
+    public static int getBestRawCPM() 
     {
-        return bestRawWPM;
+        return bestRawCPM;
     }
 
     public static double getBestAccuracy() 

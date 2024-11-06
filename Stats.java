@@ -1,7 +1,7 @@
 import greenfoot.*;
 public class Stats extends Actor
 {
-    private Label wpmLabel;
+    private Label cpmLabel;
     private Label accLabel;
     private Label rawLabel;
     private Label completionLabel;
@@ -10,7 +10,7 @@ public class Stats extends Actor
     public Stats(int timeInSec, int charsTyped, int charsWrong, int paragraphLength)
     {
         setImage((GreenfootImage) null);
-        wpmLabel = new Label("", 50);
+        cpmLabel = new Label("", 50);
         rawLabel = new Label("", 50);
         accLabel = new Label("", 50);
         completionLabel = new Label("Time: " + timeInSec + "s", 50);
@@ -19,14 +19,14 @@ public class Stats extends Actor
     }
 
     public void addedToWorld(World world) {
-        world.addObject(wpmLabel, 300, 50);
+        world.addObject(cpmLabel, 300, 50);
         world.addObject(rawLabel, 300, 50 + 75);
         world.addObject(accLabel, 300, 50 + 150);
         world.addObject(completionLabel, 300, 50 + 225);
         world.addObject(timeLabel, 300, 50 + 300);
     }
     
-    public int getWpm(int timeInSec, int charsTyped, int charsWrong)
+    public int getCpm(int timeInSec, int charsTyped, int charsWrong)
     {
         return Math.max((int) (((double) (charsTyped - charsWrong) / timeInSec) * 60), 0);
     }
@@ -47,15 +47,15 @@ public class Stats extends Actor
 
     public void updateStats(int timeInSec, int charsTyped, int charsWrong, int paragraphLength)
     {
-        int wpm = getWpm(timeInSec, charsTyped, charsWrong);
+        int cpm = getCpm(timeInSec, charsTyped, charsWrong);
         int raw = getRaw(timeInSec, charsTyped + charsWrong);
         double accuracy = getAcc(charsTyped, charsWrong);
         double completion = getCom(charsTyped, paragraphLength);
 
-        wpmLabel.setValue("WPM: " + wpm);
-        rawLabel.setValue("Raw WPM: " + raw);
+        cpmLabel.setValue("CPM: " + cpm);
+        rawLabel.setValue("Raw CPM: " + raw);
         accLabel.setValue("Accuracy: " + String.format("%.2f", accuracy) + "%");
         completionLabel.setValue("Completion: " + String.format("%.2f", completion) + "%");
-        HighScoreManager.updateHighScores(wpm, raw, accuracy);
+        HighScoreManager.updateHighScores(cpm, raw, accuracy);
     }
 }
