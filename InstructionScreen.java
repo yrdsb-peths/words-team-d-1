@@ -64,6 +64,11 @@ public class InstructionScreen extends World
             currentIndex--;
             instructionLabel.setValue(allText[currentIndex]);
         }
+        if (currentIndex < allText.length - 1 && !getObjects(Button.class).contains(nextButton)) 
+        {
+            addObject(nextButton, 500, 300);
+            addObject(next, 500, 265);
+        }
     }
     
     private void backMenu()
