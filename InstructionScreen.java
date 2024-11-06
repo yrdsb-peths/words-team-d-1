@@ -12,7 +12,7 @@ public class InstructionScreen extends World
     private Label prev;
     private Label next;
     private Label backMenuLabel;
-    
+    Button nextButton = new Button(this::nextScreen);
     public InstructionScreen(World home)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -21,7 +21,7 @@ public class InstructionScreen extends World
         addObject(instructionLabel, 300, 150);
         setBackground(new GreenfootImage("background.png"));
         
-        addObject(new Button(this::nextScreen), 500, 300);
+        addObject(nextButton, 500, 300);
         next = new Label("next", 20);
         addObject(next, 500, 265);
         
@@ -45,6 +45,11 @@ public class InstructionScreen extends World
             currentIndex++;
             instructionLabel.setValue(allText[currentIndex]);
         }
+        
+        if (currentIndex == allText.length - 1) {
+            removeObject(next); 
+            removeObject(nextButton); 
+        }
     }
     
     private void prevScreen()
@@ -58,6 +63,11 @@ public class InstructionScreen extends World
         {
             currentIndex--;
             instructionLabel.setValue(allText[currentIndex]);
+        }
+        if (currentIndex < allText.length - 1 && !getObjects(Button.class).contains(nextButton)) 
+        {
+            addObject(nextButton, 500, 300);
+            addObject(next, 500, 265);
         }
     }
     

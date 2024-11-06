@@ -6,8 +6,8 @@ public class Stats extends Actor
     private Label rawLabel;
     private Label completionLabel;
     private Label timeLabel;
-
-    public Stats(int timeInSec, int charsTyped, int charsWrong, int paragraphLength)
+    
+    public WPMCalculation(int timeInSec, int charsTyped, int charsWrong, int paragraphLength)
     {
         setImage((GreenfootImage) null);
         wpmLabel = new Label("", 50);
@@ -56,5 +56,6 @@ public class Stats extends Actor
         rawLabel.setValue("Raw WPM: " + raw);
         accLabel.setValue("Accuracy: " + String.format("%.2f", accuracy) + "%");
         completionLabel.setValue("Completion: " + String.format("%.2f", completion) + "%");
+        HighScoreManager.updateHighScores(wpm, raw, accuracy);
     }
 }
