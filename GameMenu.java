@@ -25,7 +25,7 @@ public class GameMenu extends World
         typer = new Typer();
         addObject(typer, 0, 0);
         
-        paragraphLabel = new Label(typer.getParagraph(), 32, true);
+        paragraphLabel = new Label(typer.getParagraph(), 28, true);
         addObject(paragraphLabel, 300, 232);  
         
         // intialize the timer and timer label 
